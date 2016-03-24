@@ -1,7 +1,7 @@
 
 package com.claudia.rhclient.rest;
 
-import com.claudia.rhclient.entity.Utilisateur;
+import com.claudia.rhclient.dao.Utilisateur;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;

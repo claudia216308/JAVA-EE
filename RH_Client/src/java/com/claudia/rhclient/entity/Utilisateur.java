@@ -1,4 +1,4 @@
-package com.claudia.rhclient.entity;
+package com.claudia.rhclient.dao;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -25,16 +25,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
+    @NotNull(message ="Veuillez saisir un pseudo")
+    @Size(min = 3, message ="Le pseudo doit contenir plus de 3 caractèress")
     @Column(name = "pseudo")
     private String pseudo;
+    
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
+    @NotNull(message ="Veuillez saisir un mot de passe")
+    @Size(min = 3, message ="Le mot de passe doit contenir plus de 3 caractères")
     @Column(name = "motdepasse")
     private String motdepasse;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

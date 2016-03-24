@@ -36,7 +36,7 @@
         <article id="main">
             <h3> Plateforme pour la gestion du personnel de l'entreprise </h3>
 
-            <c:if test="#{empty sessionScope.utilisateur.username}"> 
+            <c:if test="#{empty sessionScope.utilisateur.pseudo}"> 
                 <p> Veuillez vous connecter pour avoir accès aux informations confidentielles</p>
             </c:if>
 
@@ -44,7 +44,7 @@
         </article>
               
                 
-    <c:if test="#{not empty sessionScope.utilisateur.username}">
+    <c:if test="#{not empty sessionScope.utilisateur.pseudo}">
         
         <div class="row">
         <div class="col-md-4" >

@@ -1,8 +1,7 @@
 
 package com.claudia.rhclient.dao;
 
-import com.claudia.rhclient.entity.Utilisateur;
-import com.claudia.rhclient.entity.Utilisateur_;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

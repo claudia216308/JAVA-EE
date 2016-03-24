@@ -1,6 +1,6 @@
 package com.claudia.rhclient.managedbean;
 
-import com.claudia.rhclient.entity.Utilisateur;
+import com.claudia.rhclient.dao.Utilisateur;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
