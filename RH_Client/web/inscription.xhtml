@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Inscription</title>
+        <h:outputStylesheet library="default"  name="css/form.css" />   
+         <h:outputStylesheet library="default"  name="css/barreNavigation.css" />
+    </h:head>
+    <h:body>
+          <h:form>
+        <ul id="nav-box">
+            <li><h:commandLink action="index" value="Accueil" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionConnexion()}" value="#{navigationController.connexion}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCompte()}" value="#{navigationController.compte}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCourses()}" value="#{navigationController.courses}" /> </li>
+                
+        </ul>   
+        </h:form>
+
+        <h1>Page d'inscription </h1>
+        
+        <!-- Formulaire d'inscription --> 
+         <h:form>
+             <fieldset>
+                 <legend>Inscription</legend>
+                 
+                        <h:outputLabel for="pseudo">Nom d'utilisateur <span class="requis">*</span></h:outputLabel>
+                        <h:inputText id="pseudo" value="#{inscriptionBean.utilisateur.pseudo}"   size="20" maxlength="20" >                   
+                            <f:ajax event="blur" render="pseudoMessage" />
+                            <f:validator binding="#{pseudoValidator}" />
+                        </h:inputText>
+                        <h:message id="pseudoMessage" for="pseudo" errorClass="erreur" />
+                        <br />
+  
+                        <h:outputLabel for="motdepasse">Mot de passe <span class="requis">*</span></h:outputLabel>
+                        <h:inputSecret id="motdepasse" value="#{inscriptionBean.utilisateur.motdepasse}"  binding="#{composantMotDePasse}" size="20" maxlength="20" >
+                            <f:ajax event="blur" execute="motdepasse confirmation" render="motDePasseMessage confirmationMessage" />
+                        </h:inputSecret>
+                        <h:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" />
+                        <br />
+    
+                        <h:outputLabel for="confirmation">Confirmation du mot de passe <span class="requis">*</span></h:outputLabel>
+                        <h:inputSecret id="confirmation" value="#{inscriptionBean.utilisateur.motdepasse}" size="20" maxlength="20" >
+                            <f:ajax event="blur" execute="motdepasse confirmation" render="motDePasseMessage confirmationMessage" />
+                            <f:attribute name="composantMotDePasse" value="#{composantMotDePasse}" />
+                            <f:validator validatorId="motDePasseValidator" />
+                        </h:inputSecret>
+                        <h:message id="confirmationMessage" for="confirmation"  errorClass="erreur" />
+                        <br />
+    
+            
+            <h:messages globalOnly="true" infoClass="info" />
+    
+            <h:commandButton value="Valider" action="#{inscriptionBean.inscrire()}" styleClass="sansLabel" />
+            <br />
+          </fieldset>
+        </h:form>
+        
+    </h:body>
+</html>
+

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Mon Compte</title>
+         <h:outputStylesheet library="default"  name="css/form.css" /> 
+         <h:outputStylesheet library="default"  name="css/barreNavigation.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+        <ul id="nav-box">
+            <li><h:commandLink action="index" value="Accueil" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionConnexion()}" value="#{navigationController.connexion}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCompte()}" value="#{navigationController.compte}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCourses()}" value="#{navigationController.courses}" /> </li>
+                
+        </ul>   
+        </h:form>
+        
+        <h1> Mon Compte </h1>
+ 
+         <h:form>
+             <fieldset>
+                 <legend>Mes informations </legend>
+                 
+                        <h:outputLabel for="pseudo">Pseudo <span class="requis">*</span></h:outputLabel>
+                        <h:inputText id="pseudo" value="#{modificationBean.utilisateur.username}" readonly="true"  size="20" maxlength="20" >                   
+                            <f:ajax event="blur" render="pseudoMessage" />
+                        </h:inputText>
+                        <h:message id="pseudoMessage" for="pseudo" errorClass="erreur" />
+                        <br />
+                        
+                        <h:outputLabel for="nom">Nom <span class="requis">*</span></h:outputLabel>
+                        <h:inputText id="nom" value="#{modificationBean.utilisateur.nom}"  size="20" maxlength="20" >
+                            <f:ajax event="blur" render="nomMessage" />
+                        </h:inputText>
+                        <h:message id="nomMessage" for="nom" errorClass="erreur" />
+                        <br />
+                        
+                        <h:outputLabel for="prenom">Prénom <span class="requis">*</span></h:outputLabel>
+                        <h:inputText id="prenom" value="#{modificationBean.utilisateur.prenom}" size="20" maxlength="20" >
+                            <f:ajax event="blur" render="prenomMessage" />
+                        </h:inputText>
+                        <h:message id="prenomMessage" for="prenom" errorClass="erreur" />
+                        <br />
+                        
+                        <h:outputLabel for="email">Adresse email <span class="requis">*</span></h:outputLabel>
+                        <h:inputText id="email" value="#{modificationBean.utilisateur.email}"  size="20" maxlength="60" >
+                            <f:ajax event="blur" render="emailMessage" />
+                        </h:inputText>
+                        <h:message id="emailMessage" for="email" errorClass="erreur" />
+                        <br />
+                        
+                        <h:outputLabel for="postal">Code postal <span class="requis">*</span></h:outputLabel>
+                        <h:inputText id="postal" value="#{modificationBean.utilisateur.postal}"  size="20" maxlength="60" >
+                            <f:ajax event="blur" render="postalMessage" />
+                        </h:inputText>
+                        <h:message id="postalMessage" for="postal" errorClass="erreur" />
+                        <br />
+    
+                        <h:outputLabel for="motdepasse">Mot de passe <span class="requis">*</span></h:outputLabel>
+                        <input type="password" id="motdepasse" value="#{modificationBean.utilisateur.motdepasse}"  size="20" maxlength="20" >
+                        </input> <!--si on utilise h:inputType le mot de passe n'est pas affiché-->
+                        <h:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" />
+                        <br />
+    
+                        <h:outputLabel for="confirmation">Confirmation du mot de passe <span class="requis">*</span></h:outputLabel>
+                        <input type="password" id="confirmation" value="#{modificationBean.utilisateur.motdepasse}" size="20" maxlength="20" >
+                        </input>
+                        <h:message id="confirmationMessage" for="confirmation"  errorClass="erreur" />
+                        <br />
+    
+            
+            <h:messages globalOnly="true" infoClass="info" />
+    
+            <h:commandButton value="Enregistrer" action="#{modificationBean.modification()}" styleClass="sansLabel" />
+            <h:commandButton value="Annuler" action="index" />
+            <br />
+          </fieldset>
+        </h:form>
+    </h:body>
+</html>
+

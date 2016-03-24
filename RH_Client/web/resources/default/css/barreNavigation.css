@@ -1,0 +1,44 @@
+ul#nav-box {
+    
+    border-width: 0px;
+    background-color: #FFFFFF;
+    margin-top: 20px;
+
+    margin : 5 0 1.5em 0;
+    padding : 5px 1em 5px 0;
+    list-style-type : none;
+    font-weight : bold;
+    font-size : 0.9em;
+    text-align: right;
+}
+
+#titre{
+    margin-top: 50px;
+}
+h1, h3,h2, p {
+	text-align: center;
+}
+
+#main {
+	width: 75%;
+	max-width: 750px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+ul#nav-box li {
+    display: inline;
+    padding : 5px 5px;
+}
+
+ul#nav-box li a {
+    padding : 5px 1em 5px 1em;
+    color: #4b4b69;
+    text-decoration: none;
+    font: normal 12pt  helvetica, sans-serif;
+    font-weight: bold;
+    
+}
+

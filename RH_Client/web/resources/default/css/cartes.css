@@ -1,0 +1,39 @@
+
+.conteneur
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    justify-content: space-around;    
+    align-content: space-around;
+    margin: 20px;
+    
+}
+
+.element{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.legend{
+    text-align: center;
+}
+
+footer {
+	text-align: center;
+	color: #E4E4E4;
+	background-color: #8A8A8A;
+	margin-top: 60px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+.image-fill {
+	width: 100%;
+}
+
+iframe{
+    margin-left: 10px;
+    margin-right: 10px; 
+}
+

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Connexion</title>
+          <h:outputStylesheet library="default"  name="css/form.css" />  
+         <h:outputStylesheet library="default"  name="css/barreNavigation.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+        <ul id="nav-box">
+            <li><h:commandLink action="index" value="Accueil" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionConnexion()}" value="#{navigationController.connexion}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCompte()}" value="#{navigationController.compte}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCourses()}" value="#{navigationController.courses}" /> </li>
+                
+        </ul>   
+        </h:form>
+        <h1>Connectez vous à votre compte</h1>
+  
+       
+         <h:form>
+             <fieldset>
+                 <legend>Connexion</legend>
+                 
+                    <h:outputLabel for="pseudo">Pseudo <span class="requis">*</span></h:outputLabel>
+                    <h:inputText id="pseudo" value="#{authentificationBean.pseudo}"   size="20" maxlength="20" >                  
+                    </h:inputText>
+                    <h:message id="pseudoMessage" for="pseudo" errorClass="erreur" />
+                    <br />
+                    
+                    <h:outputLabel for="motdepasse">Mot de passe <span class="requis">*</span></h:outputLabel>
+                    <h:inputSecret id="motdepasse" value="#{authentificationBean.passe}"  binding="#{composantMotDePasse}" size="20" maxlength="20" >
+                    </h:inputSecret>
+                    <h:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" />
+                    <br />
+                    
+                    <h:messages globalOnly="true" infoClass="info" />
+                      
+                    <h:commandButton value="Valider" action="#{authentificationBean.authentification()}" styleClass="sansLabel" />
+             </fieldset>
+         </h:form>
+        
+        <h:button value="Créer un compte" outcome="inscription" />
+           
+    </h:body>
+</html>
+
