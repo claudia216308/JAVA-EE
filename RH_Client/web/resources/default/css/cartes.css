@@ -11,6 +11,11 @@
     
 }
 
+.test{
+    text-align: center;
+    align-content: center;
+}
+
 .element{
     margin-top: 10px;
     margin-bottom: 10px;
