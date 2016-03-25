@@ -9,6 +9,9 @@
         <h:outputStylesheet library="default"  name="css/barreNavigation.css" />
         <h:outputStylesheet library="default"  name="css/cartes.css" />
         <h:outputStylesheet library="default"  name="css/bootstrap.css" />
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
     </h:head>
     
     <h:body>
@@ -29,14 +32,34 @@
         <div class="col-md-4" >
             <div class="thumbnail">
                 <div class="caption">
-                     <h2>Ajouter un salarié </h2>                 
+                     <h2>Ajouter un département </h2>                 
                 </div>
                 
-               <img class="image-fill" src="images/course/course.jpg"/>
-                
+                <h:form>
+                 <fieldset>
+                 <legend>Inscription</legend>
+                 
+                    <h:outputLabel for="nom">Nom     <span class="requis">*</span></h:outputLabel>
+                    <h:inputText id="nom" value="#{rechercheDepartement.dep.nom}"   size="20" maxlength="20" />                   
+                    <h:message id="nomMessage" for="nom" errorClass="erreur" />
+                    <br />
+                        
+                    <h:outputLabel for="description">Description <span class="requis">*</span></h:outputLabel>
+                    <h:inputTextarea cols="30" rows="10" id="description" value="#{rechercheDepartement.dep.description}"/>                                                    
+                    <h:message id="descriptionMessage" for="description" errorClass="erreur" />
+                    <br />
+                    
+                    <h:commandButton value="Valider"   action="#{rechercheDepartement.createDepartment()}" styleClass="sansLabel" />
+                     
+                 </fieldset>
+                    
+                 </h:form>              
             </div>
         </div>
         
+            
+            
+            
         <div class="col-md-4" >
             <div class="thumbnail">
                 
@@ -53,7 +76,7 @@
 		</h:panelGrid>
                 <br/>
                 <h:commandButton value="Valider"  styleClass="sansLabel" />
-                     
+            
            </h:form>
             <br/>
                 <p> #{rechercheDepartement.descriptionDepartement()}</p>
