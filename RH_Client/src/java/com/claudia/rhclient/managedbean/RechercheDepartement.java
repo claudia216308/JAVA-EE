@@ -91,6 +91,8 @@ public class RechercheDepartement implements Serializable {
     
     //Créer un nouveau département 
     public void createDepartment(){
+        
+        System.out.print(dep.getNom());
      
         JSONObject obj = new JSONObject();    
         try {
