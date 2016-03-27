@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.claudia.rhrest.methodes.SalarieResource.class);
         resources.add(com.claudia.rhrest.methodes.UtilisateurResource.class);
         resources.add(com.claudia.rhrest.service.DepartementFacadeREST.class);
         resources.add(com.claudia.rhrest.service.SalarieFacadeREST.class);

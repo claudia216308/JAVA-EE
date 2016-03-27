@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.claudia.rhrest.service;
 
 import com.claudia.rhrest.entity.Salarie;
@@ -20,10 +16,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author claudia
- */
 @Stateless
 @Path("com.claudia.rhrest.entity.salarie")
 public class SalarieFacadeREST extends AbstractFacade<Salarie> {
@@ -61,7 +53,7 @@ public class SalarieFacadeREST extends AbstractFacade<Salarie> {
     public Salarie find(@PathParam("id") Short id) {
         return super.find(id);
     }
-
+    
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

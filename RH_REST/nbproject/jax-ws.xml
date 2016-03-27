@@ -4,6 +4,9 @@
     <service name="UtilisateurResource">
       <implementation-class>com.claudia.rhrest.methodes.UtilisateurResource</implementation-class>
     </service>
+    <service name="SalarieResource">
+      <implementation-class>com.claudia.rhrest.methodes.SalarieResource</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>

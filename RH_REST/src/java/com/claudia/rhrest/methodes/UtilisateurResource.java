@@ -1,5 +1,7 @@
 package com.claudia.rhrest.methodes;
 
+import com.claudia.rhrest.entity.Salarie;
+import com.claudia.rhrest.entity.Salarie_;
 import com.claudia.rhrest.entity.Utilisateur;
 import com.claudia.rhrest.entity.Utilisateur_;
 import com.claudia.rhrest.service.UtilisateurFacadeREST;
@@ -37,8 +39,7 @@ public class UtilisateurResource {
      
     @EJB
     private UtilisateurFacadeREST utFacadeRest;
-    
-  
+   
      
     public UtilisateurResource() {
     }
@@ -92,6 +93,8 @@ public class UtilisateurResource {
         }
         
     }
+
+
 
    
       

@@ -20,10 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author claudia
- */
+
 @Stateless
 @Path("com.claudia.rhrest.entity.departement")
 public class DepartementFacadeREST extends AbstractFacade<Departement> {
