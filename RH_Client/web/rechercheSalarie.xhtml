@@ -1,12 +1,77 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Recherche </title>
+        <title>Salarié </title>
+        <h:outputStylesheet library="default"  name="css/barreNavigation.css" />
+        <h:outputStylesheet library="default"  name="css/cartes.css" />
+        <h:outputStylesheet library="default"  name="css/bootstrap.css" />
     </h:head>
     <h:body>
-       Rechercher un salarié 
+       
+       <h:form>
+        <ul id="nav-box">
+            <li><h:commandLink action="index" value="Accueil" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionConnexion()}" value="#{navigationController.connexion}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCompte()}" value="#{navigationController.compte}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCourses()}" value="#{navigationController.courses}" /> </li>
+                
+        </ul>   
+        </h:form>
+        
+        <br/> <br/>
+        
+         <div class="row">
+               <div class="col-md-4" >
+            <div class="thumbnail">
+                <div class="caption">
+                    <a href="/RH_Client/ajoutSalarie.xhtml" > <h2>Ajouter un salarié </h2></a>                 
+                </div>
+                <a href="/RH_Client/ajoutSalarie.xhtml" ><img class="image-fill" src="images/course/course.jpg"></img></a>
+                
+            </div>
+        </div>
+                   
+        <div class="col-md-4" >
+            <div class="thumbnail">
+                
+                <div class="caption">
+                     <h2>Rechercher un Salarié </h2>
+                 </div>
+                
+              
+            <h:form>
+                
+                <h:outputLabel for="pseudo">Nom d'utilisateur <span class="requis">*</span></h:outputLabel>
+                <h:inputText id="pseudo" value="#{rechercheSalarie.nomRecherche}"  immediate="true" size="20" maxlength="20" />                     
+                <h:message id="pseudoMessage" for="pseudo" errorClass="erreur" />
+                <br />
+                <p>#{rechercheSalarie.nomRecherche}</p>
+                
+                <h:panelGrid>
+                    <h:selectOneMenu value="#{rechercheDepartement.itemDepartement}" immediate="true" style="width:200px">
+                        <f:selectItems  value="#{rechercheDepartement.listeDepartement}" />
+                    </h:selectOneMenu>
+		</h:panelGrid>
+                <br/>
+                
+                <h:commandButton value="Valider"  action="#{rechercheSalarie.resultatParNom()}"  styleClass="sansLabel" />
+            
+           </h:form>
+            <br/>
+           
+        
+
+                     
+            </div>
+        </div>
+        
+        </div>
+       
     </h:body>
 </html>
 

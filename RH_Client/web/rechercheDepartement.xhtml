@@ -36,7 +36,6 @@
                 
                 <h:form>
                  <fieldset>
-                 <legend>Inscription</legend>
                  
                     <h:outputLabel for="nom">Nom     <span class="requis">*</span></h:outputLabel>
                     <h:inputText id="nom" value="#{rechercheDepartement.dep.nom}"   size="20" maxlength="20" />                   
@@ -55,10 +54,7 @@
                  </h:form>              
             </div>
         </div>
-        
-            
-            
-            
+                   
         <div class="col-md-4" >
             <div class="thumbnail">
                 
@@ -78,8 +74,7 @@
             
            </h:form>
             <br/>
-                <p> #{rechercheDepartement.descriptionDepartement()}</p>
-            
+                <p> #{rechercheDepartement.descriptionDepartement()}</p>           
             </div>
         </div>
         

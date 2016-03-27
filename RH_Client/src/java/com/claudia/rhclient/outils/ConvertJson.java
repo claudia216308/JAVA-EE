@@ -20,7 +20,8 @@ public class ConvertJson {
     
     public static JSONArray convert(String chemin) throws JSONException{
           
-        url = Url.REST_RESOURCE + chemin;       
+        url = Url.REST_RESOURCE + chemin;      
+        System.out.print(url);
         client = Client.create();
         web = client.resource(url);
         String resultat = web.accept(MediaType.APPLICATION_JSON).get(String.class);       
@@ -30,6 +31,22 @@ public class ConvertJson {
         
         return liste;
     }
+    
+    public static JSONObject convertJson(String chemin) throws JSONException{
+          
+        url = Url.REST_RESOURCE + chemin;      
+        System.out.print(url);
+        client = Client.create();
+        web = client.resource(url);
+        String resultat = web.accept(MediaType.APPLICATION_JSON).get(String.class);       
+        System.out.print(resultat);
+        
+        JSONObject objet = new JSONObject(resultat);
+        
+        return objet;
+    }
+    
+    
     
     public static void envoieEnJSON(String chemin, JSONObject obj) throws JSONException{
         

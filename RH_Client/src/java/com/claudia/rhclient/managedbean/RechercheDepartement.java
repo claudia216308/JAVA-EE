@@ -1,13 +1,8 @@
 package com.claudia.rhclient.managedbean;
 
 import com.claudia.rhclient.outils.ConvertJson;
-import com.claudia.rhclient.properties.Url;
 import com.claudia.rhclient.rest.Departement;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 import java.io.Serializable;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,11 +27,7 @@ public class RechercheDepartement implements Serializable {
     private int  itemDepartement;
     private List<Departement> departementListe = new ArrayList<>() ;
     private Departement dep;
-
-    
-    
-    
-    
+ 
     public Departement getDep() {
         return dep;
     }
@@ -66,8 +57,8 @@ public class RechercheDepartement implements Serializable {
             JSONArray liste  = ConvertJson.convert("com.claudia.rhrest.entity.departement");
             
             for(int i=0; i< liste.length() ; i++){              
-                 JSONObject dep  = liste.getJSONObject(i);
-                 departementListe.add(new Departement(dep.getString("nom"), dep.getString("description")));
+                 JSONObject depJson  = liste.getJSONObject(i);
+                 departementListe.add(new Departement(depJson.getString("nom"), depJson.getString("description")));
                  listeDepartement.put(departementListe.get(i).getNom(), i );  //label , value                 
             }
          
@@ -77,7 +68,26 @@ public class RechercheDepartement implements Serializable {
         return listeDepartement;
     }
         
-    
+    //Récupérer un départment par son id 
+    public static Departement getDepartementById( int id ){
+        
+        Departement dep = new Departement();
+        
+        try {
+            JSONObject departementJson  = ConvertJson.convertJson("com.claudia.rhrest.entity.departement/" + id );
+          
+            dep.setNom(departementJson.getString("nom"));
+            dep.setDescription(departementJson.getString("description"));
+            
+            return dep;
+            
+              
+        } catch (JSONException ex) {
+            Logger.getLogger(RechercheDepartement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      return null;
+    }
     
 
 
