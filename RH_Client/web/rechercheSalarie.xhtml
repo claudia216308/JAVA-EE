@@ -53,13 +53,13 @@
                 <p>#{rechercheSalarie.nomRecherche}</p>
                 
                 <h:panelGrid>
-                    <h:selectOneMenu value="#{rechercheDepartement.itemDepartement}" immediate="true" style="width:200px">
+                    <h:selectOneMenu value="#{rechercheSalarie.itemDepartement}" immediate="true" style="width:200px">
                         <f:selectItems  value="#{rechercheDepartement.listeDepartement}" />
                     </h:selectOneMenu>
 		</h:panelGrid>
                 <br/>
                 
-                <h:commandButton value="Valider"  action="#{rechercheSalarie.resultatParNom()}"  styleClass="sansLabel" />
+                <h:commandButton value="Valider"  action="#{rechercheSalarie.resultatRecherche()}"  styleClass="sansLabel" />
             
            </h:form>
             <br/>

@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +27,16 @@ public class RechercheSalarie {
     private Salarie sal;
     private String nomRecherche;
     private List<Salarie> listeSalarie = new ArrayList<>();
+    private int itemDepartement;
 
+     public int getItemDepartement() {
+        return itemDepartement;
+    }
+
+    public void setItemDepartement(int itemDepartement) {
+        this.itemDepartement = itemDepartement;
+    }
+    
     
     public List<Salarie> getListeSalarie() {
         return listeSalarie;
@@ -50,34 +58,57 @@ public class RechercheSalarie {
     }
     
     
-    public RechercheSalarie(){      
+    public RechercheSalarie(){  
     }
  
+    public String resultatRecherche(){
+        
+        System.out.print("item departement id " + itemDepartement);
+        
+        // un nom a été entré ?
+        if(!nomRecherche.isEmpty()){
+            resultatParNom();
+        }
+       
+        //un département a été séléctionné ?
+        else if(itemDepartement !=0){
+            resultatParDepartement();
+        }
+        
+        return "resultatSalarie";
+    }
     
     //page rechercheSalarie : afficher les résultats de la recherche par nom 
-    public String resultatParNom(){
+    public void resultatParNom(){      
         
         try {
             
-            JSONArray liste  = ConvertJson.convert("rechercheSalarie/brouche" );
+            JSONArray liste  = ConvertJson.convert("rechercheSalarie/" + nomRecherche );
             
-            for(int i=0; i< liste.length() ; i++){              
-                 JSONObject dep  = liste.getJSONObject(i);
-      
-                 //récupération du département 
-                 int id_departement  = dep.getInt("idDepartement");              
-                 Departement departementSalarie  = RechercheDepartement.getDepartementById(1);
-                 
-                 //récupération et conversion de la date 
-                String dateStr = dep.getString("dateEmbauche");
-                System.out.print(dateStr);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                Date dateEmbauche = sdf.parse(dateStr);
-                
-                 //ajout du salarié à la liste 
-                 listeSalarie.add(new Salarie( dep.getInt("id"), dep.getString("nom"), dep.getString("prenom"), dep.getDouble("salaireEntre"),  dateEmbauche, departementSalarie, dep.getString("poste")));
-                 
+            if(liste.isNull(0)){
+                System.out.print("pas de résultat");      
             }
+            
+            else{
+                for(int i=0; i< liste.length() ; i++){              
+                    JSONObject dep  = liste.getJSONObject(i);
+
+                    //récupération du département 
+                    int id_departement  = dep.getInt("idDepartement");              
+                    Departement departementSalarie  = RechercheDepartement.getDepartementById(id_departement);
+
+                    //récupération et conversion de la date 
+                   String dateStr = dep.getString("dateEmbauche");
+                   System.out.print(dateStr);
+                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                   Date dateEmbauche = sdf.parse(dateStr);
+
+                    //ajout du salarié à la liste 
+                    listeSalarie.add(new Salarie( dep.getInt("id"), dep.getString("nom"), dep.getString("prenom"), dep.getDouble("salaireEntre"),  dateEmbauche, departementSalarie, dep.getString("poste")));               
+                }//for
+                
+            }//else
+            
          
         } catch (JSONException ex) {
             Logger.getLogger(RechercheDepartement.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,7 +118,53 @@ public class RechercheSalarie {
         
         System.out.print(listeSalarie.get(0).getId());
         System.out.print(listeSalarie.get(0).getNom());
-        return "resultatSalarie";
+        
     }
+    
+    
+    //afficher les résultats par département 
+    public void resultatParDepartement(){
+        
+        
+        try {
+            
+            JSONArray liste  = ConvertJson.convert("rechercheSalarie/departement/" + itemDepartement );
+            
+            if(liste.isNull(0)){
+                System.out.print("pas de résultat");      
+            }
+            
+            else{
+                for(int i=0; i< liste.length() ; i++){              
+                    
+                    JSONObject dep  = liste.getJSONObject(i);
+
+                    //récupération du département           
+                    Departement departementSalarie  = RechercheDepartement.getDepartementById(itemDepartement);
+
+                    //récupération et conversion de la date 
+                   String dateStr = dep.getString("dateEmbauche");
+                   System.out.print(dateStr);
+                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                   Date dateEmbauche = sdf.parse(dateStr);
+
+                    //ajout du salarié à la liste 
+                    listeSalarie.add(new Salarie( dep.getInt("id"), dep.getString("nom"), dep.getString("prenom"), dep.getDouble("salaireEntre"),  dateEmbauche, departementSalarie, dep.getString("poste")));               
+                }//for
+                
+            }//else
+            
+         
+        } catch (JSONException ex) {
+            Logger.getLogger(RechercheDepartement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(RechercheSalarie.class.getName()).log(Level.SEVERE, null, ex);
+        }             
+        
+        System.out.print(listeSalarie.get(0).getId());
+        System.out.print(listeSalarie.get(0).getNom());
+        
+    }
+    
     
 }
