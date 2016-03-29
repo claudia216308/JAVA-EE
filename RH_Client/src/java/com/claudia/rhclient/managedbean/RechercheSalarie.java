@@ -29,6 +29,15 @@ public class RechercheSalarie {
     private List<Salarie> listeSalarie = new ArrayList<>();
     private int itemDepartement;
 
+    public Salarie getSal() {
+        return sal;
+    }
+
+    public void setSal(Salarie sal) {
+        this.sal = sal;
+    }
+        
+    
      public int getItemDepartement() {
         return itemDepartement;
     }
@@ -59,6 +68,8 @@ public class RechercheSalarie {
     
     
     public RechercheSalarie(){  
+        //ne pas oublier d'initialiser l'objet Salalrié !!!!!!!!
+        sal = new Salarie();
     }
  
     public String resultatRecherche(){
@@ -79,7 +90,7 @@ public class RechercheSalarie {
     }
     
     //page rechercheSalarie : afficher les résultats de la recherche par nom 
-    public void resultatParNom(){      
+    private void resultatParNom(){      
         
         try {
             
@@ -123,7 +134,7 @@ public class RechercheSalarie {
     
     
     //afficher les résultats par département 
-    public void resultatParDepartement(){
+    private void resultatParDepartement(){
         
         
         try {
@@ -166,5 +177,26 @@ public class RechercheSalarie {
         
     }
     
+    
+     //Créer un nouveau salarié 
+    public void createSalarie(){
+        
+        System.out.print(sal.getNom());
+     
+        JSONObject obj = new JSONObject();    
+        try {
+       
+            obj.put("nom",sal.getNom());
+            obj.put("prenom", sal.getNom());
+            obj.put("poste", sal.getPoste());
+            obj.put("salaireEntre", sal.getSalaire_entre());
+            obj.put("dateEmbauche", sal.getDate_embauche());
+            obj.put("idDepartement", itemDepartement);
+            ConvertJson.envoieEnJSON("com.claudia.rhrest.entity.salarie", obj);                
+             
+        } catch (JSONException ex) {
+            Logger.getLogger(InscriptionBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

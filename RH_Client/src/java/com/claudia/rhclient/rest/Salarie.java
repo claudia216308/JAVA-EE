@@ -2,11 +2,14 @@
 package com.claudia.rhclient.rest;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 
 public class Salarie {
     
+    @NotNull(message="Veuillez entrer un nom")
     private String nom;
+    
     private String prenom;
     private int id;
     private Double salaire_entre;
