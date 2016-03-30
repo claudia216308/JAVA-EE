@@ -62,7 +62,7 @@
                                <br /><br />
                                
                                <h:outputLabel for="salaire">Salaire d'entrée <span class="requis">*</span></h:outputLabel>
-                               <h:inputText id="salaire" value="#{rechercheSalarie.sal.salaire_entre}"   size="20" maxlength="20" >                   
+                               <h:inputText   id="salaire" value="#{rechercheSalarie.sal.salaire_entre}"   size="20" maxlength="20" >                   
                                    <f:ajax event="blur" render="salaireMessage" />
                               </h:inputText>
                                <h:message id="salaireMessage" for="salaire" errorClass="erreur" />

@@ -2,19 +2,37 @@
 package com.claudia.rhclient.rest;
 
 import java.util.Date;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 public class Salarie {
     
     @NotNull(message="Veuillez entrer un nom")
+    @Size(min=3 ,message="Le nom doit comporter plus de 3 caractères")
     private String nom;
     
+    
+    @NotNull(message="Veuillez entrer un prénom")
+    @Size(min=3 ,message="Le nom doit comporter plus de 3 caractères")
     private String prenom;
+    
     private int id;
+    
+    
+    @NotNull(message="Veuillez entrer un salaire")
+    @Digits(message="Format invalide, utilisez seulement des chiffres et .", integer=5, fraction=2 )
     private Double salaire_entre;
+            //on ne peut pas utiliser @Pattern car c'est uniquement pour les string il faut utiliser @Digits
+               //integer = # d'entiers maximumx fraction = # de chiffres maximum apres la virgule
+    
     private Date date_embauche;
+    
+    
     private Departement departement;
+    
+    @NotNull(message="Veuillez entrer un poste")
     private String poste ;
 
     public Salarie(int id, String nom, String prenom, Double salaire_entre, Date date_embauche, Departement departement, String poste) {
