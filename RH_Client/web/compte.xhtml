@@ -14,7 +14,6 @@
             <li><h:commandLink action="index" value="Accueil" /> </li>
             <li><h:commandLink action="#{navigationController.redirectionConnexion()}" value="#{navigationController.connexion}" /> </li>
             <li><h:commandLink action="#{navigationController.redirectionCompte()}" value="#{navigationController.compte}" /> </li>
-            <li><h:commandLink action="#{navigationController.redirectionCourses()}" value="#{navigationController.courses}" /> </li>
                 
         </ul>   
         </h:form>
@@ -26,39 +25,12 @@
                  <legend>Mes informations </legend>
                  
                         <h:outputLabel for="pseudo">Pseudo <span class="requis">*</span></h:outputLabel>
-                        <h:inputText id="pseudo" value="#{modificationBean.utilisateur.username}" readonly="true"  size="20" maxlength="20" >                   
+                        <h:inputText id="pseudo" value="#{modificationBean.utilisateur.pseudo}" readonly="true"  size="20" maxlength="20" >                   
                             <f:ajax event="blur" render="pseudoMessage" />
                         </h:inputText>
                         <h:message id="pseudoMessage" for="pseudo" errorClass="erreur" />
                         <br />
                         
-                        <h:outputLabel for="nom">Nom <span class="requis">*</span></h:outputLabel>
-                        <h:inputText id="nom" value="#{modificationBean.utilisateur.nom}"  size="20" maxlength="20" >
-                            <f:ajax event="blur" render="nomMessage" />
-                        </h:inputText>
-                        <h:message id="nomMessage" for="nom" errorClass="erreur" />
-                        <br />
-                        
-                        <h:outputLabel for="prenom">Prénom <span class="requis">*</span></h:outputLabel>
-                        <h:inputText id="prenom" value="#{modificationBean.utilisateur.prenom}" size="20" maxlength="20" >
-                            <f:ajax event="blur" render="prenomMessage" />
-                        </h:inputText>
-                        <h:message id="prenomMessage" for="prenom" errorClass="erreur" />
-                        <br />
-                        
-                        <h:outputLabel for="email">Adresse email <span class="requis">*</span></h:outputLabel>
-                        <h:inputText id="email" value="#{modificationBean.utilisateur.email}"  size="20" maxlength="60" >
-                            <f:ajax event="blur" render="emailMessage" />
-                        </h:inputText>
-                        <h:message id="emailMessage" for="email" errorClass="erreur" />
-                        <br />
-                        
-                        <h:outputLabel for="postal">Code postal <span class="requis">*</span></h:outputLabel>
-                        <h:inputText id="postal" value="#{modificationBean.utilisateur.postal}"  size="20" maxlength="60" >
-                            <f:ajax event="blur" render="postalMessage" />
-                        </h:inputText>
-                        <h:message id="postalMessage" for="postal" errorClass="erreur" />
-                        <br />
     
                         <h:outputLabel for="motdepasse">Mot de passe <span class="requis">*</span></h:outputLabel>
                         <input type="password" id="motdepasse" value="#{modificationBean.utilisateur.motdepasse}"  size="20" maxlength="20" >

@@ -1,4 +1,4 @@
-package com.claudia.rhclient.dao;
+package com.claudia.rhclient.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;

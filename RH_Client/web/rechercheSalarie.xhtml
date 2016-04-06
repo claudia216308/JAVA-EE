@@ -19,7 +19,6 @@
             <li><h:commandLink action="index" value="Accueil" /> </li>
             <li><h:commandLink action="#{navigationController.redirectionConnexion()}" value="#{navigationController.connexion}" /> </li>
             <li><h:commandLink action="#{navigationController.redirectionCompte()}" value="#{navigationController.compte}" /> </li>
-            <li><h:commandLink action="#{navigationController.redirectionCourses()}" value="#{navigationController.courses}" /> </li>
                 
         </ul>   
         </h:form>
@@ -69,7 +68,7 @@
                                <br /><br />
                                
                                <h:outputLabel for="date">Date d'embauche <span class="requis">*</span></h:outputLabel>
-                               <p:calendar value="#{rechercheSalarie.sal.date_embauche}" pattern="yyyy-MM-dd"/>
+                               <p:calendar id="date" value="#{rechercheSalarie.dateString}" pattern="yyyy-MM-dd"/>
                                <h:message id="dateMessage" for="date" errorClass="erreur" />
                                <br /><br />
 

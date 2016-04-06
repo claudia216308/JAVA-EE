@@ -4,9 +4,24 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
+        
+        <h:outputStylesheet library="default"  name="css/barreNavigation.css" />
+        <h:outputStylesheet library="default"  name="css/form.css" />
         <title>Résultats</title>
+       
     </h:head>
     <h:body>
+        
+          <h:form>
+        <ul id="nav-box">
+            <li><h:commandLink action="index" value="Accueil" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionConnexion()}" value="#{navigationController.connexion}" /> </li>
+            <li><h:commandLink action="#{navigationController.redirectionCompte()}" value="#{navigationController.compte}" /> </li>
+                
+        </ul>   
+        </h:form>
+        
+        
         <p>Résultats : </p>
             
         <h:form>

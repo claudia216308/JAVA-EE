@@ -1,7 +1,7 @@
 package com.claudia.rhclient.managedbean;
 
-import com.claudia.rhclient.entity.UtilisateurFacade;
-import com.claudia.rhclient.dao.Utilisateur;
+import com.claudia.rhclient.dao.UtilisateurFacade;
+import com.claudia.rhclient.entity.Utilisateur;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;

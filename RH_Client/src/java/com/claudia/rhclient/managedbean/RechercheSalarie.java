@@ -28,6 +28,7 @@ public class RechercheSalarie {
     private String nomRecherche;
     private List<Salarie> listeSalarie = new ArrayList<>();
     private int itemDepartement;
+    private String dateString;
 
     public Salarie getSal() {
         return sal;
@@ -131,6 +132,17 @@ public class RechercheSalarie {
         System.out.print(listeSalarie.get(0).getNom());
         
     }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+    
+    
+    
     
     
     //afficher les résultats par département 
@@ -182,12 +194,20 @@ public class RechercheSalarie {
     public void createSalarie(){
         
         System.out.print(sal.getNom());
+        System.out.print(dateString);
+        
+       
+        
      
         JSONObject obj = new JSONObject();    
         try {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date d = sdf.parse(dateString);
+            sal.setDate_embauche(d);
        
             obj.put("nom",sal.getNom());
-            obj.put("prenom", sal.getNom());
+            obj.put("prenom", sal.getPrenom());
             obj.put("poste", sal.getPoste());
             obj.put("salaireEntre", sal.getSalaire_entre());
             obj.put("dateEmbauche", sal.getDate_embauche());
@@ -196,6 +216,8 @@ public class RechercheSalarie {
              
         } catch (JSONException ex) {
             Logger.getLogger(InscriptionBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(RechercheSalarie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

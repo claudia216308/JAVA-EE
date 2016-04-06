@@ -1,6 +1,6 @@
 package com.claudia.rhclient.managedbean;
 
-import com.claudia.rhclient.dao.Utilisateur;
+import com.claudia.rhclient.entity.Utilisateur;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
@@ -70,15 +70,7 @@ public class NavigationController implements Serializable {
       }    
     }
     
-     
-    public String redirectionCourses(){
-        if(ut!=null){ //Mes Courses        
-            return "courses";
-        }
-        else{
-            return "index";
-        }
-    }
+
     
     
     public String redirectionCompte(){
