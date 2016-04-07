@@ -28,7 +28,7 @@ public class RechercheSalarie {
     private String nomRecherche;
     private List<Salarie> listeSalarie = new ArrayList<>();
     private int itemDepartement;
-    private String dateString;
+    private Date dateString =new Date();
 
     public Salarie getSal() {
         return sal;
@@ -112,7 +112,7 @@ public class RechercheSalarie {
                     //récupération et conversion de la date 
                    String dateStr = dep.getString("dateEmbauche");
                    System.out.print(dateStr);
-                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                    Date dateEmbauche = sdf.parse(dateStr);
 
                     //ajout du salarié à la liste 
@@ -133,11 +133,11 @@ public class RechercheSalarie {
         
     }
 
-    public String getDateString() {
+    public Date getDateString() {
         return dateString;
     }
 
-    public void setDateString(String dateString) {
+    public void setDateString(Date  dateString) {
         this.dateString = dateString;
     }
     
@@ -194,31 +194,31 @@ public class RechercheSalarie {
     public void createSalarie(){
         
         System.out.print(sal.getNom());
-        System.out.print(dateString);
-        
-       
-        
-     
+        System.out.print(sal.getDate_embauche().toString());
+ 
         JSONObject obj = new JSONObject();    
         try {
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            Date d = sdf.parse(dateString);
-            sal.setDate_embauche(d);
-       
+     
+            
+            //Formatage de la date
+             SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+             String strDate = sm.format(sal.getDate_embauche());
+             System.out.print("Date : "  + strDate);
+            
             obj.put("nom",sal.getNom());
             obj.put("prenom", sal.getPrenom());
             obj.put("poste", sal.getPoste());
             obj.put("salaireEntre", sal.getSalaire_entre());
-            obj.put("dateEmbauche", sal.getDate_embauche());
+            obj.put("dateEmbauche", strDate);
             obj.put("idDepartement", itemDepartement);
-            ConvertJson.envoieEnJSON("com.claudia.rhrest.entity.salarie", obj);                
+            ConvertJson.envoieEnJSON("com.claudia.rhrest.entity.salarie", obj); 
+            
+            sal  = new Salarie();
              
         } catch (JSONException ex) {
             Logger.getLogger(InscriptionBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(RechercheSalarie.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
 }
