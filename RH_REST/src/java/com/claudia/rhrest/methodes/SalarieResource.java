@@ -86,7 +86,7 @@ public class SalarieResource {
             Root<Salarie> ut = cq.from(Salarie.class);  //table 
 
             cq.select(ut);
-            cq.where(cb.equal(ut.get(Salarie_.idDepartement),1));        
+            cq.where(cb.equal(ut.get(Salarie_.idDepartement),1));    // A CHANGER     
 
             TypedQuery<Salarie> query = em.createQuery(cq);
 

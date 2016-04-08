@@ -31,8 +31,6 @@ public class SalarieFacadeREST extends AbstractFacade<Salarie> {
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Salarie entity) {
-        System.out.print( "Rest date :"  + entity.getDateEmbauche());
-        System.out.print( "Rest nom :"  + entity.getNom());
         super.create(entity);
     }
 
