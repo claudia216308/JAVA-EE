@@ -28,7 +28,6 @@ public class RechercheSalarie {
     private String nomRecherche;
     private List<Salarie> listeSalarie = new ArrayList<>();
     private int itemDepartement;
-    private Date dateString =new Date();
 
     public Salarie getSal() {
         return sal;
@@ -84,7 +83,7 @@ public class RechercheSalarie {
        
         //un département a été séléctionné ?
         else if(itemDepartement !=0){
-            resultatParDepartement();
+           resultatParDepartement();
         }
         
         return "resultatSalarie";
@@ -95,7 +94,8 @@ public class RechercheSalarie {
         
         try {
             
-            JSONArray liste  = ConvertJson.convert("rechercheSalarie/" + nomRecherche );
+            JSONArray liste  = ConvertJson.convert("rechercheSalarie/" + nomRecherche);
+            
             
             if(liste.isNull(0)){
                 System.out.print("pas de résultat");      
@@ -112,7 +112,7 @@ public class RechercheSalarie {
                     //récupération et conversion de la date 
                    String dateStr = dep.getString("dateEmbauche");
                    System.out.print(dateStr);
-                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                    Date dateEmbauche = sdf.parse(dateStr);
 
                     //ajout du salarié à la liste 
@@ -133,14 +133,6 @@ public class RechercheSalarie {
         
     }
 
-    public Date getDateString() {
-        return dateString;
-    }
-
-    public void setDateString(Date  dateString) {
-        this.dateString = dateString;
-    }
-    
     
     
     

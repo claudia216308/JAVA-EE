@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gestion</title>
+         <h:outputStylesheet library="default"  name="css/barreNavigation.css" />
+         <h:outputStylesheet library="default"  name="css/tableau.css" />
+    </h:head>
+    <h:body>
+        <h:dataTable value="#{tableauGestion.tableau}" var="employee"
+       styleClass="employeeTable"
+       headerClass="employeeTableHeader"
+       rowClasses="employeeTableOddRow,employeeTableEvenRow">
+       <h:column>    				
+          <f:facet name="header">Nom du département</f:facet>    				
+          #{employee.nomDepartement}
+       </h:column>
+       <h:column>
+          <f:facet name="header">Nombre de salariés </f:facet>
+          #{employee.nombreSalarie}
+       </h:column>
+       <h:column>
+          <f:facet name="header">Coût salarial</f:facet>
+          #{employee.coutSalarial}
+       </h:column>
+       
+    </h:dataTable>
+        
+    </h:body>
+</html>
+

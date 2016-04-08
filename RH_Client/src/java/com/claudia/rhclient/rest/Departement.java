@@ -15,6 +15,17 @@ public class Departement {
     private String nom;
     
     private String description;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public String getNom() {
         return nom;
@@ -38,6 +49,11 @@ public class Departement {
     public Departement(String nom, String description) {
         this.nom = nom;
         this.description = description;
+    }
+    
+    public Departement(String nom, int id) {
+        this.nom = nom;
+        this.id = id;
     }
     
    
