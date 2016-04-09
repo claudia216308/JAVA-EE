@@ -3,6 +3,7 @@ package com.claudia.rhrest.methodes;
 
 import com.claudia.rhrest.entity.Salarie;
 import com.claudia.rhrest.entity.Salarie_;
+import com.google.common.collect.ComputationException;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -13,6 +14,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -62,6 +64,8 @@ public class GestionResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Long countByDepartment(@PathParam("dep") int depId){ 
         
+        Long resultat;
+        try{
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);     
         Root<Salarie> salarie = cq.from(Salarie.class);  
@@ -69,7 +73,12 @@ public class GestionResource {
         cq.select(cb.count(salarie));
         cq.where(cb.equal(salarie.get(Salarie_.idDepartement),depId));
         
-        return  em.createQuery(cq).getSingleResult();            
+        return  em.createQuery(cq).getSingleResult(); 
+        
+        }catch(Exception e ){
+            System.out.print("Pas de salariés dans ce département");
+           return 0L;  //le L permet de dire qu'il est de type Long 
+        }
     }
     
     //Somme de tous les salaires par département 
@@ -78,7 +87,8 @@ public class GestionResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Double coutSalarialParDepartment(@PathParam("dep") int depId){ 
                
-        double rien = 0.5;
+      
+        double resultat;
         try{
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Double> cq = cb.createQuery(Double.class);     
@@ -87,14 +97,15 @@ public class GestionResource {
             cq.select(cb.sum(salarie.get(Salarie_.salaireEntre)).as(Double.class)); 
             cq.where(cb.equal(salarie.get(Salarie_.idDepartement),depId));
 
-           return  em.createQuery(cq).getSingleResult();      
+            resultat = em.createQuery(cq).getSingleResult();
+               
         } 
-        catch(NoResultException e){
-            System.out.print("Pas de résultat");
-           return 1.; 
+        catch(Exception e ){
+            System.out.print("Pas de salariés dans ce département");
+           return 0.; 
         }
         
-        
+        return resultat ;  
     }
     
     
